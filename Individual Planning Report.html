@@ -7517,6 +7517,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3>Individual Planning Report - Introduction to Data Science (DSCI 100) - Jaden Berger-North</h3>
+<i>Note: According to <a href="https://piazza.com/class/mf24atnhgm03bw/post/1020_f1">this</a> Piazza thread, bulleted lists do not count towards the word count. With this in mind, this proposal comes out to roughly 550 words.</i>
 </div>
 </div>
 </div>
@@ -7721,7 +7722,7 @@ a.anchor-link {
 <h1>2) Questions</h1>
 <p><strong>Broad Question</strong>: What player characteristics and behaviours are most predictive of subscribing to a game-related newsletter?</p>
 <p><strong>Specific Question</strong>: Can a player's experience level, total hours played, age, and gender be used to predict whether they will subscribe to the game-related newsletter in the dataset?</p>
-<p>The <code>players.csv</code> dataset is well suited to answer this question because it gives us all relevant information, including the reponse/explanatory variables. It's important to note that this is a binary classification problem, and <code>sessions.csv</code> is not immediately required for this specific question.</p>
+<p>The <code>players.csv</code> dataset is well suited to answer this question because it gives us all relevant information, including the response/explanatory variables. It's important to note that this is a binary classification problem, and <code>sessions.csv</code> is not immediately required for this specific question.</p>
 </div>
 </div>
 </div>
@@ -7751,6 +7752,81 @@ a.anchor-link {
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=789b2e2d-b589-45a8-9d0b-cf15b3e63a45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Before we begin with our initial analysis, let's continue exploring the means within the <code>players.csv</code> dataset. According to 1), our mean for <code>played_hours</code> was 5.85. Repeating this process allows us to calculate the mean age as 21.14:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10d0aaf2-13dc-4ac4-a0d9-edeb7e291962">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">mean_age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">players</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">played_hours</span><span class="p">,</span><span class="w"> </span><span class="n">Age</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">mean_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">Age</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+
+<span class="n">mean_age</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<table class="dataframe">
+<caption>A tibble: 1 × 1</caption>
+<thead>
+<tr><th scope="col">mean_age</th></tr>
+<tr><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+<tr><td>21.14</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7115f3b3-6748-4854-a1ed-3cb5186376e2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Reported in a table format, we can see the means of each quantitative variable in <code>players.csv</code>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Mean Hours Played</th>
+<th style="text-align:right">Mean Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">5.85</td>
+<td style="text-align:right">21.14</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7b7453d5-e444-4954-9fd5-6d3f70af5554">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7761,8 +7837,9 @@ a.anchor-link {
 <ul>
 <li>The player base is young; players are mostly clustered between ages 15 and 25.</li>
 <li>As mentioned earlier, the hours played of each player is heavily skewed. The vast majority of players played less than 10 hours, while a few users have played 100+.</li>
-<li>There are roughly an equal amount of veteran, regular, and beginner players. Overall, there are many amateurs, and few pros.</li>
-<li>There are significantly more non-subscribers than subscribers. <strong>Because of this, accuracy alone may be a misleading metric.</strong></li>
+<li>There are roughly an equal number of veteran, regular, and beginner players. Overall, there are many amateurs, and few pros.</li>
+<li>There are significantly more non-subscribers than subscribers. <strong>Because of this, accuracy alone may be a misleading metric.</strong>
+</li>
 </ul>
 </div>
 </div>
@@ -7772,7 +7849,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">player_age_hist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">players</span><span class="w"> </span><span class="o">|&gt;</span>
@@ -7814,7 +7891,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">player_hour_hist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">players</span><span class="w"> </span><span class="o">|&gt;</span>
@@ -7848,7 +7925,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">player_experience_bar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">players</span><span class="w"> </span><span class="o">|&gt;</span>
@@ -7884,7 +7961,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">player_sub_status</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">players</span><span class="w"> </span><span class="o">|&gt;</span>
